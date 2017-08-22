@@ -243,7 +243,7 @@ public class Generate extends AbstractAcceleoGenerator {
      * All three of these default strategies support merging through JMerge.
      * </p>
      * 
-     * @return The generation strategy that is to be used for generations launched through this launcher.
+     * @return The generation strategy that is to be used for generations launched through this MavenLauncher.
      * @generated
      */
     @Override
@@ -252,8 +252,8 @@ public class Generate extends AbstractAcceleoGenerator {
     }
     
     /**
-     * This will be called in order to find and load the module that will be launched through this launcher.
-     * We expect this name not to contain file extension, and the module to be located beside the launcher.
+     * This will be called in order to find and load the module that will be launched through this MavenLauncher.
+     * We expect this name not to contain file extension, and the module to be located beside the MavenLauncher.
      * 
      * @return The name of the module that is to be launched.
      * @generated
@@ -264,7 +264,7 @@ public class Generate extends AbstractAcceleoGenerator {
     }
     
     /**
-     * If the module(s) called by this launcher require properties files, return their qualified path from
+     * If the module(s) called by this MavenLauncher require properties files, return their qualified path from
      * here.Take note that the first added properties files will take precedence over subsequent ones if they
      * contain conflicting keys.
      * 
@@ -325,7 +325,7 @@ public class Generate extends AbstractAcceleoGenerator {
     }
     
     /**
-     * This will be used to get the list of templates that are to be launched by this launcher.
+     * This will be used to get the list of templates that are to be launched by this MavenLauncher.
      * 
      * @return The list of templates to call on the module {@link #getModuleName()}.
      * @generated

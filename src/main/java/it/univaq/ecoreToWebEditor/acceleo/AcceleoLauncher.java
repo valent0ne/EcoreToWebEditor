@@ -18,9 +18,9 @@ import java.util.Map;
 import static it.univaq.ecoreToWebEditor.utils.Constants.EMTL_FILE_FORMAT;
 import static it.univaq.ecoreToWebEditor.utils.Constants.MTL_FILE_FORMAT;
 
-class Engine {
+public class AcceleoLauncher {
 
-    final private static Logger LOGGER = LoggerFactory.getLogger(Engine.class);
+    final private static Logger LOGGER = LoggerFactory.getLogger(AcceleoLauncher.class);
 
     private String MTL_FILE_NAME;
     private String EMTL_FILE_NAME;
@@ -36,7 +36,7 @@ class Engine {
 
     private String ENTRY_POINT;
 
-    private static Map<String, String> DEFAULTS;
+    public static Map<String, String> DEFAULTS;
 
     static {
         DEFAULTS.put("MTL_FILE_NAME", "generate");
@@ -51,7 +51,7 @@ class Engine {
     private String[] TEMPLATE_NAMES = {"generateElement"};
 
 
-    Engine(String pathToEcoreFile, String mtlFileName, String emtlFileName, String xtextFileName, String pathToMtlFolder, String pathToEmtlFolder, String pathToXtextFolder, String entryPoint) {
+    public AcceleoLauncher(String pathToEcoreFile, String mtlFileName, String emtlFileName, String xtextFileName, String pathToMtlFolder, String pathToEmtlFolder, String pathToXtextFolder, String entryPoint) {
 
         MTL_FILE_NAME = (mtlFileName == null || mtlFileName.isEmpty()) ? DEFAULTS.get("MTL_FILE_NAME") : mtlFileName;
         EMTL_FILE_NAME = (emtlFileName == null || emtlFileName.isEmpty()) ? DEFAULTS.get("EMTL_FILE_NAME") : emtlFileName;
@@ -68,6 +68,23 @@ class Engine {
         ENTRY_POINT = entryPoint;
 
         PATH_TO_ECORE_FILE = pathToEcoreFile;
+
+        LOGGER.info("[ACCELEO LAUNCHER - DATA RECAP]");
+        LOGGER.info("MTL_FILE_NAME: {}",MTL_FILE_NAME);
+        LOGGER.info("EMTL_FILE_NAME: {}",EMTL_FILE_NAME);
+        LOGGER.info("PATH_TO_MTL_FOLDER: {}",PATH_TO_MTL_FOLDER);
+        LOGGER.info("PATH_TO_EMTL_FOLDER: {}",PATH_TO_EMTL_FOLDER);
+        LOGGER.info("PATH_TO_XTEXT_FOLDER: {}",PATH_TO_XTEXT_FOLDER);
+        LOGGER.info("PATH_TO_MTL_FILE: {}",PATH_TO_MTL_FILE);
+        LOGGER.info("PATH_TO_EMTL_FILE: {}",PATH_TO_EMTL_FILE);
+        LOGGER.info("PATH_TO_ECORE_FILE: {}", PATH_TO_ECORE_FILE);
+        LOGGER.info("ENTRY_POINT: {}", ENTRY_POINT);
+    }
+
+    public AcceleoLauncher(){}
+
+    public Map<String, String> getDEFAULTS(){
+        return DEFAULTS;
     }
 
 
@@ -133,8 +150,9 @@ class Engine {
     /**
      * acceleo generation
      */
-    public void generate() {
+    public void run() {
 
+        LOGGER.info("[ACCELEO LAUNCHER - START]");
 
         LOGGER.info("generating {} to {}, entry point: {}", XTEXT_FILE_NAME, PATH_TO_XTEXT_FOLDER, ENTRY_POINT);
 
@@ -154,10 +172,11 @@ class Engine {
         } catch (Throwable e) {
             LOGGER.error("acceleo generation: {}", e.getMessage());
             e.printStackTrace();
+            LOGGER.error("[ACCELEO LAUNCHER - ABORTED]");
             System.exit(1);
         }
 
-        LOGGER.info("generation completed to {}", PATH_TO_XTEXT_FOLDER);
+        LOGGER.info("[ACCELEO LAUNCHER - DONE]  to {}", PATH_TO_XTEXT_FOLDER);
     }
 
 

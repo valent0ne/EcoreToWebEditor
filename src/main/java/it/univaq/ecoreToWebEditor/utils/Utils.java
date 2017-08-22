@@ -20,7 +20,7 @@ public class Utils {
      * @param source source file full path
      * @param dest destination full path
      */
-    static void fileCopy(String source, String dest){
+    public static void fileCopy(String source, String dest){
 
         LOGGER.info("copying {} to {}", source, dest);
 
@@ -39,12 +39,14 @@ public class Utils {
     /**
      * returns the last segment after "/" in a string path
      */
-    static String getLastSegment(String s){
+    public static String getLastSegment(String s, String splitter){
         try{
-            String[] aux = s.split("/");
+
+            String[] aux = s.split(splitter);
             String res =  aux[aux.length-1];
             return res;
         }catch (Exception e){
+            LOGGER.error("getLastSegment: {}",e.getMessage());
             return "";
         }
 
@@ -54,7 +56,7 @@ public class Utils {
      * pulizia ambiente
      * @param paths array of file paths to delete
      */
-    static void clean(List<String> paths){
+    public static void clean(List<String> paths){
 
         for(String p : paths){
             try {
@@ -73,7 +75,33 @@ public class Utils {
     /**
      * prints an os defined line separator
      */
-    static void separator(){
+    public static void separator(){
         System.out.println("");
     }
+
+    /**
+     * checks and fix .ecore file path
+     * @param PATH_TO_ECORE_FILE path to .ecore file
+     * @return fixed PATH_TO_ECORE_FILE
+     */
+    public static String checkEcore(String PATH_TO_ECORE_FILE){
+        if(PATH_TO_ECORE_FILE.length()<Constants.ECORE_FILE_FORMAT.length() || !(PATH_TO_ECORE_FILE.substring(PATH_TO_ECORE_FILE.length()-Constants.ECORE_FILE_FORMAT.length()).equals(Constants.ECORE_FILE_FORMAT))){
+            PATH_TO_ECORE_FILE = PATH_TO_ECORE_FILE.concat(Constants.ECORE_FILE_FORMAT);
+        }
+
+        return PATH_TO_ECORE_FILE;
+    }
+
+
+    /**
+     * return a serialized version of the project name
+     * ex. name.of.project returns name/of/project
+     */
+    public static String serializeName(String s){
+        return s.replace(".", File.separator);
+    }
+
+
+
+
 }
