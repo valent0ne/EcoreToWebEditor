@@ -1,5 +1,6 @@
 package it.univaq.ecoreToWebEditor.acceleo;
 
+import it.univaq.ecoreToWebEditor.core.Main;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -12,11 +13,13 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static it.univaq.ecoreToWebEditor.utils.Constants.EMTL_FILE_FORMAT;
 import static it.univaq.ecoreToWebEditor.utils.Constants.MTL_FILE_FORMAT;
+import static it.univaq.ecoreToWebEditor.utils.Constants.XTEXT_FILE_FORMAT;
 
 public class AcceleoLauncher {
 
@@ -36,16 +39,16 @@ public class AcceleoLauncher {
 
     private String ENTRY_POINT;
 
-    public static Map<String, String> DEFAULTS;
+    public static Map<String, String> DEFAULTS = new HashMap<>();
 
     static {
         DEFAULTS.put("MTL_FILE_NAME", "generate");
         DEFAULTS.put("EMTL_FILE_NAME", DEFAULTS.get("MTL_FILE_NAME"));
-        DEFAULTS.put("PATH_TO_MTL_FOLDER", "mtl/");
-        DEFAULTS.put("PATH_TO_EMTL_FOLDER", DEFAULTS.get("PATH_TO_MTL_FOLDER"));
-        DEFAULTS.put("PATH_TO_XTEXT_FOLDER", "gen/");
-        DEFAULTS.put("PATH_TO_MTL_FILE", DEFAULTS.get("PATH_TO_MTL_FOLDER") + DEFAULTS.get("MTL_FILE_NAME") + MTL_FILE_FORMAT);
-        DEFAULTS.put("PATH_TO_EMTL_FILE", DEFAULTS.get("PATH_TO_EMTL_FOLDER") + DEFAULTS.get("MTL_EFILE_NAME") + EMTL_FILE_FORMAT);
+        DEFAULTS.put("PATH_TO_MTL_FOLDER", "mtl"+File.separator);
+        DEFAULTS.put("PATH_TO_EMTL_FOLDER", "mtl"+File.separator);
+        DEFAULTS.put("PATH_TO_XTEXT_FOLDER", "gen"+File.separator);
+        DEFAULTS.put("PATH_TO_MTL_FILE", "mtl"+File.separator + "generate" + MTL_FILE_FORMAT);
+        DEFAULTS.put("PATH_TO_EMTL_FILE", "mtl"+File.separator + "generate" + EMTL_FILE_FORMAT);
     }
 
     private String[] TEMPLATE_NAMES = {"generateElement"};
@@ -69,16 +72,6 @@ public class AcceleoLauncher {
 
         PATH_TO_ECORE_FILE = pathToEcoreFile;
 
-        LOGGER.info("[ACCELEO LAUNCHER - DATA RECAP]");
-        LOGGER.info("MTL_FILE_NAME: {}",MTL_FILE_NAME);
-        LOGGER.info("EMTL_FILE_NAME: {}",EMTL_FILE_NAME);
-        LOGGER.info("PATH_TO_MTL_FOLDER: {}",PATH_TO_MTL_FOLDER);
-        LOGGER.info("PATH_TO_EMTL_FOLDER: {}",PATH_TO_EMTL_FOLDER);
-        LOGGER.info("PATH_TO_XTEXT_FOLDER: {}",PATH_TO_XTEXT_FOLDER);
-        LOGGER.info("PATH_TO_MTL_FILE: {}",PATH_TO_MTL_FILE);
-        LOGGER.info("PATH_TO_EMTL_FILE: {}",PATH_TO_EMTL_FILE);
-        LOGGER.info("PATH_TO_ECORE_FILE: {}", PATH_TO_ECORE_FILE);
-        LOGGER.info("ENTRY_POINT: {}", ENTRY_POINT);
     }
 
     public AcceleoLauncher(){}
@@ -154,7 +147,18 @@ public class AcceleoLauncher {
 
         LOGGER.info("[ACCELEO LAUNCHER - START]");
 
-        LOGGER.info("generating {} to {}, entry point: {}", XTEXT_FILE_NAME, PATH_TO_XTEXT_FOLDER, ENTRY_POINT);
+        if(Main.DEBUG){
+            LOGGER.debug("[DATA RECAP]");
+            LOGGER.debug("ENTRY_POINT: {}", ENTRY_POINT);
+            LOGGER.debug("PATH_TO_XTEXT_FOLDER: {}", PATH_TO_XTEXT_FOLDER);
+            LOGGER.debug("PATH_TO_EMTL_FILE: {}", PATH_TO_EMTL_FILE);
+            LOGGER.debug("TEMPLATE_NAMES: {}", TEMPLATE_NAMES);
+
+
+
+        }
+
+        LOGGER.info("generating {} to {}, entry point: {}", XTEXT_FILE_NAME+XTEXT_FILE_FORMAT, PATH_TO_XTEXT_FOLDER, ENTRY_POINT);
 
         try {
             List<String> acceleoArgs = new ArrayList<>();

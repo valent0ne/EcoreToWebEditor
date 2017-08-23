@@ -1,5 +1,6 @@
 package it.univaq.ecoreToWebEditor.utils;
 
+import it.univaq.ecoreToWebEditor.core.Main;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,10 +41,20 @@ public class Utils {
      * returns the last segment after "/" in a string path
      */
     public static String getLastSegment(String s, String splitter){
-        try{
+        if(Main.DEBUG){
+            LOGGER.debug("getLastSegment: s={}, splitter={}",s, splitter);
+        }
 
+        if(splitter.equals("\\")){
+            splitter = "\\\\";
+        }
+
+        try{
             String[] aux = s.split(splitter);
             String res =  aux[aux.length-1];
+            if(Main.DEBUG){
+                LOGGER.debug("getLastSegment: res={}",res);
+            }
             return res;
         }catch (Exception e){
             LOGGER.error("getLastSegment: {}",e.getMessage());
@@ -85,10 +96,15 @@ public class Utils {
      * @return fixed PATH_TO_ECORE_FILE
      */
     public static String checkEcore(String PATH_TO_ECORE_FILE){
+        if(Main.DEBUG){
+            LOGGER.debug("checkEcore: input path={}",PATH_TO_ECORE_FILE);
+        }
         if(PATH_TO_ECORE_FILE.length()<Constants.ECORE_FILE_FORMAT.length() || !(PATH_TO_ECORE_FILE.substring(PATH_TO_ECORE_FILE.length()-Constants.ECORE_FILE_FORMAT.length()).equals(Constants.ECORE_FILE_FORMAT))){
             PATH_TO_ECORE_FILE = PATH_TO_ECORE_FILE.concat(Constants.ECORE_FILE_FORMAT);
         }
-
+        if(Main.DEBUG){
+            LOGGER.debug("checkEcore: output path={}",PATH_TO_ECORE_FILE);
+        }
         return PATH_TO_ECORE_FILE;
     }
 
@@ -98,7 +114,14 @@ public class Utils {
      * ex. name.of.project returns name/of/project
      */
     public static String serializeName(String s){
-        return s.replace(".", File.separator);
+        if(Main.DEBUG){
+            LOGGER.debug("serializeName: s={}",s);
+        }
+        String res = s.replace(".", File.separator);
+        if(Main.DEBUG){
+            LOGGER.debug("serializeName: res={}",res);
+        }
+        return res;
     }
 
 
