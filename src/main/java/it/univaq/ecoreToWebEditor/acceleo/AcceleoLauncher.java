@@ -1,9 +1,9 @@
 package it.univaq.ecoreToWebEditor.acceleo;
 
 import it.univaq.ecoreToWebEditor.core.Main;
+import it.univaq.ecoreToWebEditor.utils.Constants;
 import it.univaq.ecoreToWebEditor.utils.Utils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.text.WordUtils;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -20,9 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static it.univaq.ecoreToWebEditor.utils.Constants.EMTL_FILE_FORMAT;
-import static it.univaq.ecoreToWebEditor.utils.Constants.MTL_FILE_FORMAT;
-import static it.univaq.ecoreToWebEditor.utils.Constants.XTEXT_FILE_FORMAT;
+import static it.univaq.ecoreToWebEditor.utils.Constants.*;
 
 public class AcceleoLauncher {
 
@@ -148,10 +146,9 @@ public class AcceleoLauncher {
      */
     public void run() {
 
-        LOGGER.info("[ACCELEO LAUNCHER - START]");
+        LOGGER.info(Constants.ANSI_GREEN+"[ACCELEO LAUNCHER - START]"+Constants.ANSI_RESET);
 
         if(Main.DEBUG){
-            LOGGER.debug("[DATA RECAP]");
             LOGGER.debug("ENTRY_POINT: {}", ENTRY_POINT);
             LOGGER.debug("PATH_TO_XTEXT_FOLDER: {}", PATH_TO_XTEXT_FOLDER);
             LOGGER.debug("PATH_TO_EMTL_FILE: {}", PATH_TO_EMTL_FILE);
@@ -197,11 +194,11 @@ public class AcceleoLauncher {
         } catch (Throwable e) {
             LOGGER.error("acceleo generation: {}", e.getMessage());
             e.printStackTrace();
-            LOGGER.error("[ACCELEO LAUNCHER - ABORTED]");
+            LOGGER.error(Constants.ANSI_RED+"[ACCELEO LAUNCHER - ABORTED]"+Constants.ANSI_RESET);
             System.exit(1);
         }
 
-        LOGGER.info("[ACCELEO LAUNCHER - DONE]  to {}", PATH_TO_XTEXT_FOLDER);
+        LOGGER.info(Constants.ANSI_GREEN+"[ACCELEO LAUNCHER - DONE]"+Constants.ANSI_RESET+" to {}", PATH_TO_XTEXT_FOLDER);
     }
 
 

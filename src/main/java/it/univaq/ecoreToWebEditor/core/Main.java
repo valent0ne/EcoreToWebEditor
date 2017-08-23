@@ -118,7 +118,7 @@ public class Main {
             LANGUAGE_NAME = BASE_NAME+"."+StringUtils.capitalize(Utils.getLastSegment(Main.BASE_NAME, "\\."));
 
             if(Main.DEBUG){
-                LOGGER.debug("[DATA RECAP]");
+                LOGGER.debug(Constants.ANSI_GREEN+"[DATA RECAP]"+Constants.ANSI_RESET);
 
                 LOGGER.debug("BASE_NAME: {}",BASE_NAME);
                 LOGGER.debug("FORMAT_NAME: {}",FORMAT_NAME);
@@ -157,9 +157,7 @@ public class Main {
 
     private void run(){
 
-        //TODO nell'.xtext generato controlla gli import sopra
-
-        LOGGER.info("[STARTING PROCESS]");
+        LOGGER.info(Constants.ANSI_GREEN+"[STARTING PROCESS]"+Constants.ANSI_RESET);
 
         new XtextProjectBuilder().run();
 
@@ -174,7 +172,7 @@ public class Main {
 
         new MavenLauncher(PATH_TO_POM).run();
 
-        LOGGER.info("[PROCESS COMPLETED]");
+        LOGGER.info(Constants.ANSI_GREEN+"[PROCESS COMPLETED]"+Constants.ANSI_RESET);
 
     }
 }

@@ -2,6 +2,7 @@ package it.univaq.ecoreToWebEditor.xtext;
 
 import com.google.common.base.Charsets;
 import it.univaq.ecoreToWebEditor.core.Main;
+import it.univaq.ecoreToWebEditor.utils.Constants;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
@@ -36,7 +37,7 @@ public class XtextProjectBuilder {
   }
   
   public void run() {
-    XtextProjectBuilder.LOGGER.info("[XTEXTPROJECTBUILDER - START]");
+    XtextProjectBuilder.LOGGER.info(((Constants.ANSI_GREEN + "[XTEXTPROJECTBUILDER - START]") + Constants.ANSI_RESET));
     try {
       final CliProjectsCreator creator = this.newProjectCreator();
       final Consumer<WizardConfiguration> _function = (WizardConfiguration config) -> {
@@ -59,13 +60,13 @@ public class XtextProjectBuilder {
         String _message = e.getMessage();
         XtextProjectBuilder.LOGGER.error(_message);
         e.printStackTrace();
-        XtextProjectBuilder.LOGGER.error("[XTEXTPROJECTBUILDER - ABORTED]");
+        XtextProjectBuilder.LOGGER.error(((Constants.ANSI_RED + "[XTEXTPROJECTBUILDER - ABORTED]") + Constants.ANSI_RESET));
         System.exit(1);
       } else {
         throw Exceptions.sneakyThrow(_t);
       }
     }
-    XtextProjectBuilder.LOGGER.info("[XTEXTPROJECTBUILDER - DONE]");
+    XtextProjectBuilder.LOGGER.info(((Constants.ANSI_GREEN + "[XTEXTPROJECTBUILDER - DONE]") + Constants.ANSI_RESET));
   }
   
   private final List<WizardConfiguration> projectConfigs = Collections.<WizardConfiguration>unmodifiableList(CollectionLiterals.<WizardConfiguration>newArrayList(ObjectExtensions.<WizardConfiguration>operator_doubleArrow(

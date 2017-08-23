@@ -12,12 +12,10 @@ import org.eclipse.xtext.xtext.wizard.SourceLayout
 import org.eclipse.xtext.xtext.wizard.WizardConfiguration
 import org.eclipse.xtext.xtext.wizard.cli.CliProjectsCreator
 
-import org.apache.commons.lang3.StringUtils;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import it.univaq.ecoreToWebEditor.utils.Utils
+import it.univaq.ecoreToWebEditor.utils.Constants
 import it.univaq.ecoreToWebEditor.core.Main
 
 public class XtextProjectBuilder{
@@ -35,7 +33,7 @@ public class XtextProjectBuilder{
 
     def void run() {
 
-        LOGGER.info("[XTEXTPROJECTBUILDER - START]")
+        LOGGER.info(Constants.ANSI_GREEN+"[XTEXTPROJECTBUILDER - START]"+Constants.ANSI_RESET)
         try{
             val creator = newProjectCreator
             projectConfigs.forEach [ config |
@@ -48,11 +46,11 @@ public class XtextProjectBuilder{
         }catch(Throwable e){
             LOGGER.error(e.getMessage());
             e.printStackTrace
-            LOGGER.error("[XTEXTPROJECTBUILDER - ABORTED]")
+            LOGGER.error(Constants.ANSI_RED+"[XTEXTPROJECTBUILDER - ABORTED]"+Constants.ANSI_RESET)
             System.exit(1);
         }
 
-        LOGGER.info("[XTEXTPROJECTBUILDER - DONE]")
+        LOGGER.info(Constants.ANSI_GREEN+"[XTEXTPROJECTBUILDER - DONE]"+Constants.ANSI_RESET)
 
     }
 

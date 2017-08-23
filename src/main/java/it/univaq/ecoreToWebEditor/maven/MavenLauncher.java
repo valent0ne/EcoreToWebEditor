@@ -1,11 +1,15 @@
 package it.univaq.ecoreToWebEditor.maven;
 
 import com.sun.javafx.PlatformUtil;
+import it.univaq.ecoreToWebEditor.core.Main;
+import it.univaq.ecoreToWebEditor.utils.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class MavenLauncher {
@@ -16,14 +20,16 @@ public class MavenLauncher {
 
 
     public MavenLauncher(String pathToPom) {
-        PATH_TO_POM = (pathToPom == null || pathToPom.isEmpty() || (pathToPom.substring(pathToPom.length() - 8, pathToPom.length()).equals("/pom.xml"))) ? "" : pathToPom;
+        PATH_TO_POM = pathToPom;
 
-        LOGGER.info("[MAVEN LAUNCHER - DATA RECAP]");
-        LOGGER.info("PATH_TO_POM: {}", PATH_TO_POM);
     }
 
     public void run() {
-        LOGGER.info("[MAVEN LAUNCHER - START]");
+        LOGGER.info(Constants.ANSI_GREEN+"[MAVEN LAUNCHER - START]"+Constants.ANSI_RESET);
+
+        if(Main.DEBUG){
+            LOGGER.debug("PATH_TO_POM: {}", PATH_TO_POM);
+        }
 
         try {
 
@@ -46,7 +52,9 @@ public class MavenLauncher {
 
             String line = "";
             while ((line = reader.readLine()) != null) {
-                System.out.print(line + "\n");
+                System.out.print(Constants.ANSI_YELLOW+new SimpleDateFormat("HH:mm:ss").format(new Date())+Constants.ANSI_RESET+
+                                 Constants.ANSI_PURPLE+" [MVN LOG] "+Constants.ANSI_RESET+
+                                 line + "\n");
             }
 
             proc.waitFor();
@@ -54,10 +62,10 @@ public class MavenLauncher {
 
         } catch (Throwable e) {
             LOGGER.error(e.getMessage());
-            LOGGER.error("[MAVEN LAUNCHER - ABORTED]");
+            LOGGER.error(Constants.ANSI_RED+"[MAVEN LAUNCHER - ABORTED]"+Constants.ANSI_RESET);
             System.exit(1);
         }
-        LOGGER.info("[MAVEN LAUNCHER - DONE]");
+        LOGGER.info(Constants.ANSI_GREEN+"[MAVEN LAUNCHER - DONE]"+Constants.ANSI_RESET);
     }
 
 }
