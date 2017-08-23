@@ -124,6 +124,31 @@ public class Utils {
         return res;
     }
 
+    /**
+     * transform a language name to uri format
+     * ex. org.xtext.webdsl.WebDsl to http://www.xtext.org/webdsl/WebDsl
+     * @param s language name
+     * @return uri version on language name
+     */
+    public static String languageNameToUri(String s){
+        if(Main.DEBUG){
+            LOGGER.debug("languageNameToUri: input={}",s);
+        }
+        String aux[] = s.split("\\.");
+        if(Main.DEBUG){
+            LOGGER.debug("languageNameToUri: # of items={}",aux.length);
+        }
+        String res = "http://www."+aux[1]+"."+aux[0]+"/";
+        for(int i = 2; i<aux.length-1; i++){
+            res+=aux[i]+"/";
+        }
+        res = res.substring(0, res.length()-1);
+        if(Main.DEBUG){
+            LOGGER.debug("languageNameToUri: output={}",res);
+        }
+        return res;
+    }
+
 
 
 

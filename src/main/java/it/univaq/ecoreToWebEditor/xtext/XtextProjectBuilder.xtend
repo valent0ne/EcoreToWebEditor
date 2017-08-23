@@ -12,35 +12,53 @@ import org.eclipse.xtext.xtext.wizard.SourceLayout
 import org.eclipse.xtext.xtext.wizard.WizardConfiguration
 import org.eclipse.xtext.xtext.wizard.cli.CliProjectsCreator
 
-public class XtextProjectBuilderXtend{
+import org.apache.commons.lang3.StringUtils;
 
-    private String BASE_NAME;               //ex. "org.xtext.example.testDsl"
-    private String FORMAT_NAME;             //ex. "testdsl"
-    private String PATH_TO_PROJECT_FOLDER;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import it.univaq.ecoreToWebEditor.utils.Utils
+import it.univaq.ecoreToWebEditor.core.Main
+
+public class XtextProjectBuilder{
+
+
 
     private final String XTEXT_VERSION = "2.12.0"
 
-    new(String baseName, String formatName, String pathToProjectFolder){
-        BASE_NAME = baseName;
-        FORMAT_NAME = formatName;
-        PATH_TO_PROJECT_FOLDER = pathToProjectFolder;
+    //logger
+    private static final Logger LOGGER = LoggerFactory.getLogger(XtextProjectBuilder.getClass)
+
+    new(){
+
     }
 
     def void run() {
-        val creator = newProjectCreator
-        projectConfigs.forEach [ config |
-            val targetLocation = new File(PATH_TO_PROJECT_FOLDER, config.baseName)
-            targetLocation.mkdirs
-            org.eclipse.xtext.util.Files.sweepFolder(targetLocation)
-            config.rootLocation = targetLocation.path
-            creator.createProjects(config)
-            println("Updating expectations for " + config.baseName)
-        ]
+
+        LOGGER.info("[XTEXTPROJECTBUILDER - START]")
+        try{
+            val creator = newProjectCreator
+            projectConfigs.forEach [ config |
+                val targetLocation = new File(Main.PATH_TO_OUT_FOLDER, config.baseName)
+                targetLocation.mkdirs
+                org.eclipse.xtext.util.Files.sweepFolder(targetLocation)
+                config.rootLocation = targetLocation.path
+                creator.createProjects(config)
+            ]
+        }catch(Throwable e){
+            LOGGER.error(e.getMessage());
+            e.printStackTrace
+            LOGGER.error("[XTEXTPROJECTBUILDER - ABORTED]")
+            System.exit(1);
+        }
+
+        LOGGER.info("[XTEXTPROJECTBUILDER - DONE]")
+
     }
 
     val projectConfigs = #[
         newProjectConfig => [
-            baseName = BASE_NAME
+            baseName = Main.BASE_NAME
             preferredBuildSystem = BuildSystem.MAVEN
             sourceLayout = SourceLayout.PLAIN
             projectLayout = ProjectLayout.HIERARCHICAL
@@ -130,8 +148,8 @@ public class XtextProjectBuilderXtend{
             xtextVersion = new XtextVersion(XTEXT_VERSION)
             encoding = Charsets.UTF_8
             language => [
-                name = "org.xtext.example.testdsl.TestDsl"
-                fileExtensions = FileExtensions.fromString("testdsl")
+                name = Main.LANGUAGE_NAME //ex. "org.xtext.example.testdsl.TestDsl"
+                fileExtensions = FileExtensions.fromString(Main.FORMAT_NAME)
             ]
         ]
     }

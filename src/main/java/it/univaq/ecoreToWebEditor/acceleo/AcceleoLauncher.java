@@ -1,6 +1,9 @@
 package it.univaq.ecoreToWebEditor.acceleo;
 
 import it.univaq.ecoreToWebEditor.core.Main;
+import it.univaq.ecoreToWebEditor.utils.Utils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.WordUtils;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -152,25 +155,43 @@ public class AcceleoLauncher {
             LOGGER.debug("ENTRY_POINT: {}", ENTRY_POINT);
             LOGGER.debug("PATH_TO_XTEXT_FOLDER: {}", PATH_TO_XTEXT_FOLDER);
             LOGGER.debug("PATH_TO_EMTL_FILE: {}", PATH_TO_EMTL_FILE);
-            LOGGER.debug("TEMPLATE_NAMES: {}", TEMPLATE_NAMES);
-
-
-
         }
+
+        compile();
 
         LOGGER.info("generating {} to {}, entry point: {}", XTEXT_FILE_NAME+XTEXT_FILE_FORMAT, PATH_TO_XTEXT_FOLDER, ENTRY_POINT);
 
         try {
             List<String> acceleoArgs = new ArrayList<>();
             acceleoArgs.add(ENTRY_POINT);
-            acceleoArgs.add(XTEXT_FILE_NAME);
+            acceleoArgs.add(StringUtils.capitalize(XTEXT_FILE_NAME)+XTEXT_FILE_FORMAT);
+            acceleoArgs.add(Main.LANGUAGE_NAME);
+            acceleoArgs.add(Utils.languageNameToUri(Main.LANGUAGE_NAME));
+            acceleoArgs.add(StringUtils.uncapitalize(Utils.getLastSegment(Utils.languageNameToUri(Main.LANGUAGE_NAME), "/")));
 
             File targetFolder = new File(PATH_TO_XTEXT_FOLDER);
+            if(Main.DEBUG){
+                LOGGER.debug("target folder set");
+            }
 
-            Generate generator = new Generate(ecoreLoader(), targetFolder, acceleoArgs);
+            URI fileUri = ecoreLoader();
+
+            Generate generator = new Generate(fileUri, targetFolder, acceleoArgs);
+
+            if(Main.DEBUG){
+                LOGGER.debug("generator ready");
+            }
 
             generator.setModuleFileName(PATH_TO_EMTL_FILE);
+
+            if(Main.DEBUG){
+                LOGGER.debug("path to emtl file set");
+            }
             generator.setTemplateNames(TEMPLATE_NAMES);
+
+            if(Main.DEBUG){
+                LOGGER.debug("template names set");
+            }
 
             generator.doGenerate(new BasicMonitor());
         } catch (Throwable e) {

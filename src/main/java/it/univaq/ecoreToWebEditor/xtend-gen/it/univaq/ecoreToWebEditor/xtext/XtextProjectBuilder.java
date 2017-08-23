@@ -1,6 +1,7 @@
 package it.univaq.ecoreToWebEditor.xtext;
 
 import com.google.common.base.Charsets;
+import it.univaq.ecoreToWebEditor.core.Main;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
@@ -25,67 +26,51 @@ import org.eclipse.xtext.xtext.wizard.cli.CliProjectsCreator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+@SuppressWarnings("all")
 public class XtextProjectBuilder {
-
-  //logger
-  private static final Logger LOGGER = LoggerFactory.getLogger(XtextProjectBuilder.class);
-
-  private String BASE_NAME;
-  
-  private String FORMAT_NAME;
-  
-  private String PATH_TO_PROJECT_FOLDER;
-  
   private final String XTEXT_VERSION = "2.12.0";
-
   
-  public XtextProjectBuilder(final String baseName, final String formatName, final String pathToProjectFolder) {
-    this.BASE_NAME = baseName;
-    this.FORMAT_NAME = formatName;
-    this.PATH_TO_PROJECT_FOLDER = pathToProjectFolder;
-
-    LOGGER.info("[XTEXTPROJECTBUILDER - DATA RECAP]");
-    LOGGER.info("BASE_NAME: {}", BASE_NAME);
-    LOGGER.info("FORMAT_NAME: {}", FORMAT_NAME);
-    LOGGER.info("PATH_TO_PROJECT_FOLDER: {}", PATH_TO_PROJECT_FOLDER);
-
+  private final static Logger LOGGER = LoggerFactory.getLogger(XtextProjectBuilder.class.getClass());
+  
+  public XtextProjectBuilder() {
   }
   
   public void run() {
-
-    LOGGER.info("[XTEXTPROJECTBUILDER - START]");
-
-    final CliProjectsCreator creator = this.newProjectCreator();
-    final Consumer<WizardConfiguration> _function = (WizardConfiguration config) -> {
-      try {
-        String _baseName = config.getBaseName();
-        final File targetLocation = new File(this.PATH_TO_PROJECT_FOLDER, _baseName);
-        targetLocation.mkdirs();
-        Files.sweepFolder(targetLocation);
-        String _path = targetLocation.getPath();
-        config.setRootLocation(_path);
-        creator.createProjects(config);
-      } catch (Throwable _e) {
-        throw Exceptions.sneakyThrow(_e);
-      }
-    };
-    try{
+    XtextProjectBuilder.LOGGER.info("[XTEXTPROJECTBUILDER - START]");
+    try {
+      final CliProjectsCreator creator = this.newProjectCreator();
+      final Consumer<WizardConfiguration> _function = (WizardConfiguration config) -> {
+        try {
+          String _baseName = config.getBaseName();
+          final File targetLocation = new File(Main.PATH_TO_OUT_FOLDER, _baseName);
+          targetLocation.mkdirs();
+          Files.sweepFolder(targetLocation);
+          String _path = targetLocation.getPath();
+          config.setRootLocation(_path);
+          creator.createProjects(config);
+        } catch (Throwable _e) {
+          throw Exceptions.sneakyThrow(_e);
+        }
+      };
       this.projectConfigs.forEach(_function);
-    }catch (Throwable e){
-      LOGGER.error(e.getMessage());
-      LOGGER.error("[XTEXTPROJECTBUILDER - ABORTED]");
-      System.exit(1);
+    } catch (final Throwable _t) {
+      if (_t instanceof Throwable) {
+        final Throwable e = (Throwable)_t;
+        String _message = e.getMessage();
+        XtextProjectBuilder.LOGGER.error(_message);
+        e.printStackTrace();
+        XtextProjectBuilder.LOGGER.error("[XTEXTPROJECTBUILDER - ABORTED]");
+        System.exit(1);
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
     }
-
-
-    LOGGER.info("[XTEXTPROJECTBUILDER - DONE]");
-
+    XtextProjectBuilder.LOGGER.info("[XTEXTPROJECTBUILDER - DONE]");
   }
   
   private final List<WizardConfiguration> projectConfigs = Collections.<WizardConfiguration>unmodifiableList(CollectionLiterals.<WizardConfiguration>newArrayList(ObjectExtensions.<WizardConfiguration>operator_doubleArrow(
     this.newProjectConfig(), ((Procedure1<WizardConfiguration>) (WizardConfiguration it) -> {
-    it.setBaseName(this.BASE_NAME);
+    it.setBaseName(Main.BASE_NAME);
     it.setPreferredBuildSystem(BuildSystem.MAVEN);
     it.setSourceLayout(SourceLayout.PLAIN);
     it.setProjectLayout(ProjectLayout.HIERARCHICAL);
@@ -112,8 +97,8 @@ public class XtextProjectBuilder {
       it.setEncoding(Charsets.UTF_8);
       LanguageDescriptor _language = it.getLanguage();
       final Procedure1<LanguageDescriptor> _function_1 = (LanguageDescriptor it_1) -> {
-        it_1.setName("org.xtext.example.testdsl.TestDsl");
-        LanguageDescriptor.FileExtensions _fromString = LanguageDescriptor.FileExtensions.fromString("testdsl");
+        it_1.setName(Main.LANGUAGE_NAME);
+        LanguageDescriptor.FileExtensions _fromString = LanguageDescriptor.FileExtensions.fromString(Main.FORMAT_NAME);
         it_1.setFileExtensions(_fromString);
       };
       ObjectExtensions.<LanguageDescriptor>operator_doubleArrow(_language, _function_1);
