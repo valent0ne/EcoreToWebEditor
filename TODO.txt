@@ -1,0 +1,4 @@
+todo aggiungi i fix per eclipse in particolare aggiusta i .project dei vari
+subpackage e vedi se puoi aggiungere le dependencies dei plugin
+
+e le cartelle all'elenco delle resources per i sotto package quali src src-gen e xtend-gen
