@@ -3,6 +3,9 @@ package it.univaq.ecoreToWebEditor.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Stores and handles the costants used in the application
  */
@@ -29,6 +32,8 @@ public class Constants {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
+
+    public static final List<String> PROJECT_SUFFIX = Arrays.asList("", ".ide", ".target", ".ui", ".web");
 
 
 

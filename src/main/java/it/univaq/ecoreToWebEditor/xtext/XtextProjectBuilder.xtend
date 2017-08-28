@@ -15,7 +15,13 @@ import org.eclipse.xtext.xtext.wizard.cli.CliProjectsCreator
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import it.univaq.ecoreToWebEditor.utils.Constants
+import static it.univaq.ecoreToWebEditor.utils.Constants.ANSI_GREEN
+import static it.univaq.ecoreToWebEditor.utils.Constants.ANSI_RED
+import static it.univaq.ecoreToWebEditor.utils.Constants.ANSI_RESET
+import static it.univaq.ecoreToWebEditor.core.Main.DEBUG
+import static it.univaq.ecoreToWebEditor.core.Main.PATH_TO_OUT_FOLDER
+import static it.univaq.ecoreToWebEditor.core.Main.BASE_NAME
+
 import it.univaq.ecoreToWebEditor.core.Main
 
 public class XtextProjectBuilder{
@@ -33,8 +39,10 @@ public class XtextProjectBuilder{
 
     def void run() {
 
-        LOGGER.info(Constants.ANSI_GREEN+"[XTEXTPROJECTBUILDER - START]"+Constants.ANSI_RESET)
+        LOGGER.info(ANSI_GREEN+"[XTEXTPROJECTBUILDER - START]"+ANSI_RESET)
         try{
+            LOGGER.info("generating project at {}", PATH_TO_OUT_FOLDER+File.separator+BASE_NAME);
+
             val creator = newProjectCreator
             projectConfigs.forEach [ config |
                 val targetLocation = new File(Main.PATH_TO_OUT_FOLDER, config.baseName)
@@ -44,13 +52,16 @@ public class XtextProjectBuilder{
                 creator.createProjects(config)
             ]
         }catch(Throwable e){
+            LOGGER.error(ANSI_RED+"[XTEXTPROJECTBUILDER - ABORTED]"+ANSI_RESET)
             LOGGER.error(e.getMessage());
-            e.printStackTrace
-            LOGGER.error(Constants.ANSI_RED+"[XTEXTPROJECTBUILDER - ABORTED]"+Constants.ANSI_RESET)
+
+            if(DEBUG){
+                e.printStackTrace();
+            }
             System.exit(1);
         }
 
-        LOGGER.info(Constants.ANSI_GREEN+"[XTEXTPROJECTBUILDER - DONE]"+Constants.ANSI_RESET)
+        LOGGER.info(ANSI_GREEN+"[XTEXTPROJECTBUILDER - DONE]"+ANSI_RESET)
 
     }
 

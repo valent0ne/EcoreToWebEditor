@@ -39,6 +39,7 @@ public class XtextProjectBuilder {
   public void run() {
     XtextProjectBuilder.LOGGER.info(((Constants.ANSI_GREEN + "[XTEXTPROJECTBUILDER - START]") + Constants.ANSI_RESET));
     try {
+      XtextProjectBuilder.LOGGER.info("generating project at {}", ((Main.PATH_TO_OUT_FOLDER + File.separator) + Main.BASE_NAME));
       final CliProjectsCreator creator = this.newProjectCreator();
       final Consumer<WizardConfiguration> _function = (WizardConfiguration config) -> {
         try {
@@ -57,10 +58,12 @@ public class XtextProjectBuilder {
     } catch (final Throwable _t) {
       if (_t instanceof Throwable) {
         final Throwable e = (Throwable)_t;
+        XtextProjectBuilder.LOGGER.error(((Constants.ANSI_RED + "[XTEXTPROJECTBUILDER - ABORTED]") + Constants.ANSI_RESET));
         String _message = e.getMessage();
         XtextProjectBuilder.LOGGER.error(_message);
-        e.printStackTrace();
-        XtextProjectBuilder.LOGGER.error(((Constants.ANSI_RED + "[XTEXTPROJECTBUILDER - ABORTED]") + Constants.ANSI_RESET));
+        if (Main.DEBUG) {
+          e.printStackTrace();
+        }
         System.exit(1);
       } else {
         throw Exceptions.sneakyThrow(_t);

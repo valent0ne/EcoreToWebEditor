@@ -2,18 +2,19 @@ package it.univaq.ecoreToWebEditor.core;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
-
+import it.univaq.ecoreToWebEditor.acceleo.AcceleoLauncher;
 import it.univaq.ecoreToWebEditor.maven.MavenLauncher;
 import it.univaq.ecoreToWebEditor.utils.Constants;
 import it.univaq.ecoreToWebEditor.utils.Utils;
-import it.univaq.ecoreToWebEditor.acceleo.AcceleoLauncher;
-
 import it.univaq.ecoreToWebEditor.xtext.XtextProjectBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+
+import static it.univaq.ecoreToWebEditor.utils.Utils.clean;
+import static it.univaq.ecoreToWebEditor.utils.Utils.eclipsify;
 
 
 public class Main {
@@ -25,6 +26,15 @@ public class Main {
 
     @Parameter(names = {"--debug", "-d"}, description = "debug mode")
     public static boolean DEBUG = false;
+
+    @Parameter(names = {"--clean", "-c"}, description = "clean target folder before starting")
+    public static boolean CLEAN = false;
+
+    @Parameter(names = {"--eclypsify", "-efy"}, description = "eclipsify the generated project")
+    public static boolean ECLIPSIFY = false;
+
+    @Parameter(names = {"--nobuild", "-nb"}, description = "don't run maven build")
+    public static boolean NOBUILD = false;
 
     //path to the output folder, default "./out"
     @Parameter(names = {"--out", "-o"}, description = "path to output folder")
@@ -62,11 +72,13 @@ public class Main {
     private static String MTL_FILE_NAME;
     private static String EMTL_FILE_NAME;
     private static String XTEXT_FILE_NAME;
-    public static String LANGUAGE_NAME;
     private static String PATH_TO_MTL_FOLDER;
     private static String PATH_TO_EMTL_FOLDER;
     private static String PATH_TO_XTEXT_FOLDER;
     private static String PATH_TO_POM;
+
+    public static String LANGUAGE_NAME;
+
 
 
     public static void main( String[] args ) {
@@ -159,6 +171,10 @@ public class Main {
 
         LOGGER.info(Constants.ANSI_GREEN+"[STARTING PROCESS]"+Constants.ANSI_RESET);
 
+        if(CLEAN){
+            clean();
+        }
+
         new XtextProjectBuilder().run();
 
         new AcceleoLauncher(PATH_TO_ECORE_FILE,
@@ -170,7 +186,13 @@ public class Main {
                             PATH_TO_XTEXT_FOLDER,
                             ENTRY_POINT).run();
 
-        new MavenLauncher(PATH_TO_POM).run();
+        if(!NOBUILD){
+            new MavenLauncher(PATH_TO_POM).run();
+        }
+
+        if(ECLIPSIFY){
+            eclipsify();
+        }
 
         LOGGER.info(Constants.ANSI_GREEN+"[PROCESS COMPLETED]"+Constants.ANSI_RESET);
 

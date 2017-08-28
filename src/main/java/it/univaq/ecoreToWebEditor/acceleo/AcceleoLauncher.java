@@ -1,7 +1,6 @@
 package it.univaq.ecoreToWebEditor.acceleo;
 
 import it.univaq.ecoreToWebEditor.core.Main;
-import it.univaq.ecoreToWebEditor.utils.Constants;
 import it.univaq.ecoreToWebEditor.utils.Utils;
 import org.apache.commons.lang3.StringUtils;
 import org.eclipse.emf.common.util.BasicMonitor;
@@ -20,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static it.univaq.ecoreToWebEditor.core.Main.DEBUG;
 import static it.univaq.ecoreToWebEditor.utils.Constants.*;
 
 public class AcceleoLauncher {
@@ -85,7 +85,7 @@ public class AcceleoLauncher {
     /**
      * compile source .mtl file to dest location
      */
-    public void compile() {
+    private void compile() {
 
         LOGGER.info("compiling {}...", PATH_TO_MTL_FILE);
 
@@ -96,7 +96,9 @@ public class AcceleoLauncher {
             acceleoCompiler.doCompile(new BasicMonitor());
         } catch (Throwable e) {
             LOGGER.error(".mtl compiler {}", e.getMessage());
-            e.printStackTrace();
+            if(DEBUG){
+                e.printStackTrace();
+            }
             System.exit(1);
         }
 
@@ -133,7 +135,9 @@ public class AcceleoLauncher {
 
         } catch (Throwable e) {
             LOGGER.error(".ecore loader {}", e.getMessage());
-            e.printStackTrace();
+            if(DEBUG){
+                e.printStackTrace();
+            }
             System.exit(1);
         }
 
@@ -146,7 +150,7 @@ public class AcceleoLauncher {
      */
     public void run() {
 
-        LOGGER.info(Constants.ANSI_GREEN+"[ACCELEO LAUNCHER - START]"+Constants.ANSI_RESET);
+        LOGGER.info(ANSI_GREEN+"[ACCELEO LAUNCHER - START]"+ANSI_RESET);
 
         if(Main.DEBUG){
             LOGGER.debug("ENTRY_POINT: {}", ENTRY_POINT);
@@ -193,12 +197,14 @@ public class AcceleoLauncher {
             generator.doGenerate(new BasicMonitor());
         } catch (Throwable e) {
             LOGGER.error("acceleo generation: {}", e.getMessage());
-            e.printStackTrace();
-            LOGGER.error(Constants.ANSI_RED+"[ACCELEO LAUNCHER - ABORTED]"+Constants.ANSI_RESET);
+            LOGGER.error(ANSI_RED+"[ACCELEO LAUNCHER - ABORTED]"+ANSI_RESET);
+            if(DEBUG){
+                e.printStackTrace();
+            }
             System.exit(1);
         }
 
-        LOGGER.info(Constants.ANSI_GREEN+"[ACCELEO LAUNCHER - DONE]"+Constants.ANSI_RESET+" to {}", PATH_TO_XTEXT_FOLDER);
+        LOGGER.info(ANSI_GREEN+"[ACCELEO LAUNCHER - DONE]"+ANSI_RESET+" to {}", PATH_TO_XTEXT_FOLDER);
     }
 
 
