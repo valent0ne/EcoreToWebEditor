@@ -173,7 +173,10 @@ public class Utils {
 
         LOGGER.info(ANSI_GREEN+"[ECLIPSIFY - START]"+ANSI_RESET);
 
+        LOGGER.info("targets loaded");
         List<String> targets = getTargets();
+
+        LOGGER.info("handleProjectFile: loading and editing .classpath and .project files");
 
         handleClasspathFile(targets);
         handleProjectFile(targets);
@@ -276,8 +279,6 @@ public class Utils {
                     LOGGER.debug("handleProjectFile: .project copied to {}", target);
                 }
 
-                //load file
-                LOGGER.info("handleProjectFile: loading and editing .project file");
 
                 if (DEBUG) {
                     LOGGER.debug("handleProjectFile: loading {}", path);
@@ -306,7 +307,6 @@ public class Utils {
                 StreamResult result = new StreamResult(new File(path));
                 transformer.transform(source, result);
 
-                LOGGER.info("handleProjectFile: done");
             }
         } catch (Exception e) {
             LOGGER.error("handleClasspath: {}", e.getMessage());
