@@ -15,6 +15,7 @@ import java.io.File;
 
 import static it.univaq.ecoreToWebEditor.utils.Utils.clean;
 import static it.univaq.ecoreToWebEditor.utils.Utils.eclipsify;
+import static it.univaq.ecoreToWebEditor.utils.Utils.fixMwe2;
 
 
 public class Main {
@@ -71,12 +72,12 @@ public class Main {
 
     private static String MTL_FILE_NAME;
     private static String EMTL_FILE_NAME;
-    private static String XTEXT_FILE_NAME;
     private static String PATH_TO_MTL_FOLDER;
     private static String PATH_TO_EMTL_FOLDER;
-    private static String PATH_TO_XTEXT_FOLDER;
     private static String PATH_TO_POM;
 
+    public static String PATH_TO_XTEXT_FOLDER;
+    public static String XTEXT_FILE_NAME;
     public static String LANGUAGE_NAME;
 
 
@@ -176,6 +177,8 @@ public class Main {
         }
 
         new XtextProjectBuilder().run();
+
+        fixMwe2();
 
         new AcceleoLauncher(PATH_TO_ECORE_FILE,
                             MTL_FILE_NAME,

@@ -16,7 +16,9 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +79,35 @@ public class Utils {
         } catch (Exception e) {
             LOGGER.error("getLastSegment: {}", e.getMessage());
             return "";
+        }
+
+    }
+
+    /**
+     * workaround for issue
+     * https://www.eclipse.org/forums/index.php/m/1771804
+     * https://github.com/eclipse/xtext-core/issues/41
+     */
+
+    public static void fixMwe2() {
+        LOGGER.info("deploying .mwe2 fix");
+        String path = PATH_TO_XTEXT_FOLDER+File.separator+"Generate"+XTEXT_FILE_NAME+MWE2_FILE_FORMAT;
+        if(DEBUG){
+            LOGGER.debug("path to .mwe2 file: {}", path);
+            LOGGER.debug("new line position: {}", FIX_TARGET_LINE);
+            LOGGER.debug("new line content: {}", FIX_CONTENT);
+        }
+        try{
+            List<String> lines = Files.readAllLines(Paths.get(path), StandardCharsets.UTF_8);
+            lines.add(FIX_TARGET_LINE, FIX_CONTENT);
+            Files.write(Paths.get(path), lines, StandardCharsets.UTF_8);
+            LOGGER.info(".mwe2 fixed");
+        }catch (Exception e){
+            LOGGER.error("fixMwe2: {}", e.getMessage());
+            if (DEBUG) {
+                e.printStackTrace();
+            }
+            System.exit(1);
         }
 
     }

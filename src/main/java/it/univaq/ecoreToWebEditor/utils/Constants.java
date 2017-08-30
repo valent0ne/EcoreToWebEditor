@@ -22,6 +22,7 @@ public class Constants {
     public static final String EMTL_FILE_FORMAT = ".emtl";
     public static final String XTEXT_FILE_FORMAT = ".xtext";
     public static final String ECORE_FILE_FORMAT = ".ecore";
+    public static final String MWE2_FILE_FORMAT = ".mwe2";
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -34,6 +35,10 @@ public class Constants {
     public static final String ANSI_WHITE = "\u001B[37m";
 
     public static final List<String> PROJECT_SUFFIX = Arrays.asList("", ".ide", ".target", ".ui", ".web");
+
+    public static final int FIX_TARGET_LINE = 29;
+    public static final String FIX_CONTENT = "			referencedResource = \"platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel\"";
+
 
 
 
