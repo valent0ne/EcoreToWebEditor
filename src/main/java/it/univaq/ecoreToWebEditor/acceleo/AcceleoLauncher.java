@@ -194,7 +194,12 @@ public class AcceleoLauncher {
                 LOGGER.debug("template names set");
             }
 
+
             generator.doGenerate(new BasicMonitor());
+
+            LOGGER.info(ANSI_GREEN+"[ACCELEO LAUNCHER - DONE]"+ANSI_RESET+" to {}", PATH_TO_XTEXT_FOLDER);
+
+
         } catch (Throwable e) {
             LOGGER.error("acceleo generation: {}", e.getMessage());
             LOGGER.error(ANSI_RED+"[ACCELEO LAUNCHER - ABORTED]"+ANSI_RESET);
@@ -203,8 +208,6 @@ public class AcceleoLauncher {
             }
             System.exit(1);
         }
-
-        LOGGER.info(ANSI_GREEN+"[ACCELEO LAUNCHER - DONE]"+ANSI_RESET+" to {}", PATH_TO_XTEXT_FOLDER);
     }
 
 
