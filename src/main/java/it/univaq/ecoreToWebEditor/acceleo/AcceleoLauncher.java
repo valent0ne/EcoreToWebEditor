@@ -91,8 +91,11 @@ public class AcceleoLauncher {
 
         try {
             AcceleoCompiler acceleoCompiler = new AcceleoCompiler();
+            //setting source folder
             acceleoCompiler.setSourceFolder(PATH_TO_MTL_FOLDER);
+            //setting out folder
             acceleoCompiler.setOutputFolder(PATH_TO_EMTL_FOLDER);
+            //acceleo will compile all .mtl files inside source folder
             acceleoCompiler.doCompile(new BasicMonitor());
         } catch (Throwable e) {
             LOGGER.error(".mtl compiler {}", e.getMessage());
@@ -163,11 +166,17 @@ public class AcceleoLauncher {
         LOGGER.info("generating {} to {}, entry point: {}", XTEXT_FILE_NAME+XTEXT_FILE_FORMAT, PATH_TO_XTEXT_FOLDER, ENTRY_POINT);
 
         try {
+            //adding args that will be passed to acceleo template
             List<String> acceleoArgs = new ArrayList<>();
+            //entry point
             acceleoArgs.add(ENTRY_POINT);
+            //.xtext file name
             acceleoArgs.add(StringUtils.capitalize(XTEXT_FILE_NAME)+XTEXT_FILE_FORMAT);
+            //dsl language name
             acceleoArgs.add(Main.LANGUAGE_NAME);
+            //uri of language name
             acceleoArgs.add(Utils.languageNameToUri(Main.LANGUAGE_NAME));
+            //generated model name
             acceleoArgs.add(StringUtils.uncapitalize(Utils.getLastSegment(Utils.languageNameToUri(Main.LANGUAGE_NAME), "/")));
 
             File targetFolder = new File(PATH_TO_XTEXT_FOLDER);
@@ -175,26 +184,31 @@ public class AcceleoLauncher {
                 LOGGER.debug("target folder set");
             }
 
+            //load source ecore metamodel
             URI fileUri = ecoreLoader();
 
+            //create generator
             Generate generator = new Generate(fileUri, targetFolder, acceleoArgs);
 
             if(Main.DEBUG){
                 LOGGER.debug("generator ready");
             }
 
+            //set module file name (name of compiled .mtl acceleo template)
             generator.setModuleFileName(PATH_TO_EMTL_FILE);
 
             if(Main.DEBUG){
                 LOGGER.debug("path to emtl file set");
             }
+
+            //set template name (name of main template)
             generator.setTemplateNames(TEMPLATE_NAMES);
 
             if(Main.DEBUG){
                 LOGGER.debug("template names set");
             }
 
-
+            //launch generation
             generator.doGenerate(new BasicMonitor());
 
             LOGGER.info(ANSI_GREEN+"[ACCELEO LAUNCHER - DONE]"+ANSI_RESET+" to {}", PATH_TO_XTEXT_FOLDER);

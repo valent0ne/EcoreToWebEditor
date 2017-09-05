@@ -44,6 +44,7 @@ public class Utils {
 
         File file = new File(source);
         try {
+            //copy source file to dest location and replace if exists
             Files.copy(file.toPath(), new File(dest).toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             LOGGER.error("fileCopy: {}", e.getMessage());
@@ -65,12 +66,15 @@ public class Utils {
             LOGGER.debug("getLastSegment: s={}, splitter={}", s, splitter);
         }
 
+        //if the splitter is "\" escape it
         if (splitter.equals("\\")) {
             splitter = "\\\\";
         }
 
         try {
+            //split string
             String[] aux = s.split(splitter);
+            //get last item of split
             String res = aux[aux.length - 1];
             if (DEBUG) {
                 LOGGER.debug("getLastSegment: res={}", res);
@@ -91,6 +95,7 @@ public class Utils {
 
     public static void fixMwe2() {
         LOGGER.info("deploying .mwe2 fix");
+        //path to target .mwe2 file
         String path = PATH_TO_XTEXT_FOLDER+File.separator+"Generate"+XTEXT_FILE_NAME+MWE2_FILE_FORMAT;
         if(DEBUG){
             LOGGER.debug("path to .mwe2 file: {}", path);
@@ -98,8 +103,11 @@ public class Utils {
             LOGGER.debug("new line content: {}", FIX_CONTENT);
         }
         try{
+            //read all lines from .mwe2 file
             List<String> lines = Files.readAllLines(Paths.get(path), StandardCharsets.UTF_8);
+            //add new line at index: FIX_TARGET_LINE
             lines.add(FIX_TARGET_LINE, FIX_CONTENT);
+            //write new line to disk
             Files.write(Paths.get(path), lines, StandardCharsets.UTF_8);
             LOGGER.info(".mwe2 fixed");
         }catch (Exception e){
@@ -121,6 +129,7 @@ public class Utils {
         LOGGER.info("clean: deleting {} and its content...", target);
 
         try{
+            //delete target directory and its content
             FileUtils.deleteDirectory(target);
         }catch (Exception e){
             LOGGER.warn("clean: can't clean {}, proceeding anyway...",target );
@@ -135,26 +144,6 @@ public class Utils {
     public static void separator() {
         System.out.println("");
     }
-
-    /**
-     * checks and fix .ecore file path
-     *
-     * @param PATH_TO_ECORE_FILE path to .ecore file
-     * @return fixed PATH_TO_ECORE_FILE
-     */
-    public static String checkEcore(String PATH_TO_ECORE_FILE) {
-        if (DEBUG) {
-            LOGGER.debug("checkEcore: input path={}", PATH_TO_ECORE_FILE);
-        }
-        if (PATH_TO_ECORE_FILE.length() < ECORE_FILE_FORMAT.length() || !(PATH_TO_ECORE_FILE.substring(PATH_TO_ECORE_FILE.length() - ECORE_FILE_FORMAT.length()).equals(ECORE_FILE_FORMAT))) {
-            PATH_TO_ECORE_FILE = PATH_TO_ECORE_FILE.concat(ECORE_FILE_FORMAT);
-        }
-        if (DEBUG) {
-            LOGGER.debug("checkEcore: output path={}", PATH_TO_ECORE_FILE);
-        }
-        return PATH_TO_ECORE_FILE;
-    }
-
 
     /**
      * return a serialized version of the project name
@@ -228,12 +217,12 @@ public class Utils {
 
 
         try {
-
+            //read .classpath_web from /resources
             InputStream cp_web = getFile(File.separator+".classpath_web");
 
 
             for (String t : targets) {
-                //get the .classpath file and copy it to target directories
+                //load .classpath from /resources
                 InputStream cp = getFile(File.separator+".classpath");
 
                 File target = new File(t + File.separator + ".classpath");
@@ -246,12 +235,14 @@ public class Utils {
                 assert cp_web != null;
                 assert cp != null;
 
+                //.web subprojects is handled differently
                 if(t.substring(t.length()-3, t.length()).equals("web")){
                     if(DEBUG){
                         LOGGER.debug("handleclasspath: .web subproject detected");
                     }
                     FileUtils.copyInputStreamToFile(cp_web, target);
                 }else{
+                    //other subprojects
                     FileUtils.copyInputStreamToFile(cp, target);
                 }
 
@@ -278,12 +269,13 @@ public class Utils {
 
 
         try {
-
+            //load .project_web from /resources
             InputStream prj_web = getFile(File.separator+".project_web");
 
 
             for (String t : targets) {
 
+                //load .project from /resources
                 InputStream prj = getFile(File.separator+".project");
 
                 String path = t + File.separator + ".project";
@@ -297,12 +289,14 @@ public class Utils {
                 assert prj != null;
                 assert prj_web != null;
 
+                //.web subproject is handled differently
                 if(t.substring(t.length()-3, t.length()).equals("web")){
                     if(DEBUG){
                         LOGGER.debug("handleProjectFile: .web subproject detected");
                     }
                     FileUtils.copyInputStreamToFile(prj_web, target);
                 }else{
+                    //other subprojects
                     FileUtils.copyInputStreamToFile(prj, target);
                 }
 
@@ -314,6 +308,8 @@ public class Utils {
                 if (DEBUG) {
                     LOGGER.debug("handleProjectFile: loading {}", path);
                 }
+                //content inside <name> tag in .project has to be edited before finishing
+                //load file
                 DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
                 DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
                 Document doc = docBuilder.parse(target);

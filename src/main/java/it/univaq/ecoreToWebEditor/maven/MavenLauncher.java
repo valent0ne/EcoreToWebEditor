@@ -37,6 +37,7 @@ public class MavenLauncher {
 
             String command = "";
 
+            //adjust generate command if windows is detected
             if (!PlatformUtil.isWindows()) {
                 command = "mvn -f " + PATH_TO_POM + " clean install";
             } else {
@@ -46,10 +47,10 @@ public class MavenLauncher {
 
             LOGGER.info("running: {}", command);
 
+            //create process and run the command
             Process proc = Runtime.getRuntime().exec(command);
 
             // Read the output
-
             BufferedReader reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
 
             String line = "";
@@ -59,6 +60,7 @@ public class MavenLauncher {
                                  line + "\n");
             }
 
+            //wait for process to exit
             proc.waitFor();
 
 

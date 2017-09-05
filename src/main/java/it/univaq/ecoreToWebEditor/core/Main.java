@@ -153,7 +153,7 @@ public class Main {
             }
 
         }catch (Exception e){
-
+            //if there is something wrong print the cli usage instructions
             jc.usage();
 
             if(DEBUG){
@@ -172,14 +172,17 @@ public class Main {
 
         LOGGER.info(Constants.ANSI_GREEN+"[STARTING PROCESS]"+Constants.ANSI_RESET);
 
+    
         if(CLEAN){
             clean();
         }
-
+        //create xtext project
         new XtextProjectBuilder().run();
 
+        //deploy .mwe2 fix
         fixMwe2();
 
+        //run acceleo
         new AcceleoLauncher(PATH_TO_ECORE_FILE,
                             MTL_FILE_NAME,
                             EMTL_FILE_NAME,
@@ -189,10 +192,12 @@ public class Main {
                             PATH_TO_XTEXT_FOLDER,
                             ENTRY_POINT).run();
 
+        //skip build generated xtext project (if requested)
         if(!NOBUILD){
             new MavenLauncher(PATH_TO_POM).run();
         }
 
+        //apply eclipse files if requested
         if(ECLIPSIFY){
             eclipsify();
         }
