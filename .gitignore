@@ -4,7 +4,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -15,10 +14,20 @@ hs_err_pid*
 
 *.iml
 
-target/
-
 \.classpath
 
 \.project
 
 \.settings/
+
+target/ecores/
+
+target/surefire-reports/
+
+target/maven-status/
+
+target/maven-archiver/
+
+target/classes/
+
+target/out/org\.xtext\.schoolfromgithubDsl/
