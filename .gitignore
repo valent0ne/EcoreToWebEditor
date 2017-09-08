@@ -31,3 +31,5 @@ target/maven-archiver/
 target/classes/
 
 target/out/org\.xtext\.schoolfromgithubDsl/
+
+target/out/

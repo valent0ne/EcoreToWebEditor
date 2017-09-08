@@ -13,9 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 
-import static it.univaq.ecoreToWebEditor.utils.Utils.clean;
-import static it.univaq.ecoreToWebEditor.utils.Utils.eclipsify;
-import static it.univaq.ecoreToWebEditor.utils.Utils.fixMwe2;
+import static it.univaq.ecoreToWebEditor.utils.Utils.*;
 
 
 public class Main {
@@ -34,8 +32,11 @@ public class Main {
     @Parameter(names = {"--eclypsify", "-efy"}, description = "eclipsify the generated project")
     public static boolean ECLIPSIFY = false;
 
-    @Parameter(names = {"--nobuild", "-nb"}, description = "don't run maven build")
+    @Parameter(names = {"--nobuild", "-nb"}, description = "doesn't run maven build")
     public static boolean NOBUILD = false;
+
+    @Parameter(names = {"--nobacktrack", "-noback"}, description = "doesn't radd backtracking to antlr")
+    public static boolean NOBACKTRACKING = false;
 
     //path to the output folder, default "./out"
     @Parameter(names = {"--out", "-o"}, description = "path to output folder")
@@ -181,6 +182,11 @@ public class Main {
 
         //deploy .mwe2 fix
         fixMwe2();
+
+        //add backtrack to antlr parser
+        if(!NOBACKTRACKING){
+            addBacktracking();
+        }
 
         //run acceleo
         new AcceleoLauncher(PATH_TO_ECORE_FILE,

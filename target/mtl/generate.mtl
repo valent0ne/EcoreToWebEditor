@@ -9,13 +9,14 @@ generate [modelName/] "[uri/]"
 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
+
 [comment process EClass entry point/]
-[if (isSupertypeOfSomething(getEntryPoint(e, entryPoint) , e))]
+[if (isSupertypeOfSomething(getEClass(e, entryPoint) , e))]
 	[comment if entry point is a supertye/]
-	[handleSupertypeEClass(getEntryPoint(e, entryPoint))/]
+	[handleSupertypeEClass(getEClass(e, entryPoint))/]
 [else]
 	[comment if entry point is "simple"/]
-	[handleEClass(getEntryPoint(e, entryPoint))/]
+	[handleEClass(getEClass(e, entryPoint))/]
 [/if]
 
 [comment process interface/abstract EClass/]
@@ -26,7 +27,9 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 [comment cycle through all the EClass that are NOT interfaces/abstract/entry point/supertypes /]
 [for (c : EClass | getPureEClasses(e, entryPoint))]
-	[handleEClass(c)/]
+	[if c.name <> 'EObject']
+		[handleEClass(c)/]
+	[/if]
 [/for]
 
 [handleTypes(e)/]
@@ -41,11 +44,14 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 		 https://github.com/eclipse/xtext-core/issues/41  
 /]
 
-EObject returns ecore::EObject:
-	{ecore::EObject}
-	'EObject'
-	;
-
+[comment if there is not an EClass named 'EObject' handle it as a Type/]
+[if (thereIsEClass(e, 'EObject'))]
+	[handleEClass(getEClass(e, 'EObject'))/]
+[else]
+	EObject returns ecore::EObject:
+		{ecore::EObject}
+		'EObject';
+[/if]
 
 [/file]
 [/template]
@@ -113,7 +119,10 @@ EObject returns ecore::EObject:
 [comment given an EClass generates the sub-rules for the attributes/]
 [template public handleAttributes(c : EClass)]
 [for (a : EAttribute | c.eAllAttributes)]
-	[if (a.lowerBound = 0)] ( [/if] '[a.name/]' '=' [if (a.upperBound > 1)] '{' [a.name/]+=[a.eType.name/] ( "," [a.name/]+=[a.eType.name/])* '}' [else] [a.name/] = [a.eType.name/] [/if] [if (a.lowerBound = 0)] )? [/if]
+	[comment cannot handle EEnumerator typed attributes as it leads to "The attribute '<attributeName>' is not transient so it must have a data type that is serializable"/]
+	[if (a.eType.name <> 'EEnumerator')]
+		[if (a.lowerBound = 0)] ( [/if] '[a.name/]' '=' [if (a.upperBound > 1)] '{' [a.name/]+=[a.eType.name/] ( "," [a.name/]+=[a.eType.name/])* '}' [else] [a.name/] = [a.eType.name/] [/if] [if (a.lowerBound = 0)] )? [/if]
+	[/if]
 [/for]
 [/template]
 
@@ -125,7 +134,7 @@ EObject returns ecore::EObject:
 	[if (r.containment = false)]
 		[if (r.upperBound = 1)]
 			('[r.name/]' '(' [r.name/] = ['['/][r.eReferenceType.name/]|STRING[']'/] ')')[if (r.lowerBound = 0)]?[/if]
-		[else] [comment was r.eReferenceType.eAllAttributes->first().eType.name.toUpper().substring(2) instead of STRING/]
+		[else] 
 			('[r.name/]' '(' [r.name/] += ['['/][r.eReferenceType.name/]|STRING[']'/] ( "," [r.name/] += ['['/][r.eReferenceType.name/]|STRING[']'/])* ')' )[if (r.lowerBound = 0)]?[/if]
 		[/if]
 	[/if]
@@ -152,13 +161,21 @@ EObject returns ecore::EObject:
 [/for]
 [/template]
 
-
-[comment query that returns the entry point EClass/]
-[query public getEntryPoint (e : EPackage, entryPoint : String) : EClass =
+[comment query that returns the EClass with name = name/]
+[query public getEClass (e : EPackage, name : String) : EClass =
 	e.eClassifiers
 			-> filter(EClass)
-			-> select(c : EClass |  (c.name = entryPoint))
+			-> select(c : EClass |  (c.name = name))
 			-> any(true)
+/]
+
+[comment returns True if there is an EClass with name = name/]
+[query public thereIsEClass (e : EPackage, name : String) : Boolean = 
+	e.eClassifiers
+			-> filter(EClass)
+			-> select(c : EClass | (c.name = name))
+			-> asSet()
+			-> size() > 0
 /]
 
 [comment query that returns a set of all the EClass that are NOT interfaces/abstract/entry point /]
@@ -387,7 +404,10 @@ EObject returns ecore::EObject:
 		[comment last-resort parametric handler/]
 	
 		[else]
-		// TODO: implement [t.name/] type rule as it can't be generated
+
+		// TODO: re-implement [t.name/] type rule below as it probably not generated correctly
+		[t.name/] returns ecore::[t.name/]:
+			'[t.name/]';
 		[/if]
 	[/if]
 [/for]

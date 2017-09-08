@@ -121,6 +121,37 @@ public class Utils {
     }
 
     /**
+     * enables backtrack on antlr parser (avoid errors regarding non-LL(*) decision
+     * "rule <rule> has non-LL(*) decision due to recursive rule invocations reachable from alts <alts>.
+     *  Resolve by left-factoring or using syntactic predicates or using backtrack=true option."
+     */
+
+    public static void addBacktracking(){
+        LOGGER.info("adding backtracking");
+        //path to target .mwe2 file
+        String path = PATH_TO_XTEXT_FOLDER+File.separator+"Generate"+XTEXT_FILE_NAME+MWE2_FILE_FORMAT;
+        if(DEBUG){
+            LOGGER.debug("path to .mwe2 file: {}", path);
+            LOGGER.debug("new line position: {}", BACKTRACK_TARGET_LINE);
+            LOGGER.debug("new line content: {}", BACKTRACK_CONTENT);
+        }
+        try{
+            //same as fixMwe2
+            List<String> lines = Files.readAllLines(Paths.get(path), StandardCharsets.UTF_8);
+            lines.add(BACKTRACK_TARGET_LINE, BACKTRACK_CONTENT);
+            Files.write(Paths.get(path), lines, StandardCharsets.UTF_8);
+            LOGGER.info("backtracking added");
+        }catch (Exception e){
+            LOGGER.error("addBacktracking: {}", e.getMessage());
+            if (DEBUG) {
+                e.printStackTrace();
+            }
+            System.exit(1);
+        }
+
+    }
+
+    /**
      * deletes target folder and its content
      */
     public static void clean() {

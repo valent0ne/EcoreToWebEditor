@@ -1,8 +1,5 @@
 package it.univaq.ecoreToWebEditor.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -37,8 +34,17 @@ public class Constants {
 
     //constant .mwe2 fix data
     public static final int FIX_TARGET_LINE = 29;
-    public static final String FIX_CONTENT = "			referencedResource = \"platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel\"";
+    public static final String FIX_CONTENT = "\t\t\treferencedResource = \"platform:/resource/org.eclipse.emf.ecore/model/Ecore.genmodel\"";
 
+
+    //constants add backtracking
+    public static final int BACKTRACK_TARGET_LINE = 39;
+    public static final String BACKTRACK_CONTENT = "\t\t\tparserGenerator = {\n" +
+            "\t\t\t\toptions = {\n" +
+            "\t\t\t\t\tbacktrack = true\n" +
+            "\t\t\t\t\tbacktrackLexer = true\n" +
+            "\t\t\t\t}\n" +
+            "\t\t\t}";
 
 
 
