@@ -655,3 +655,203 @@
 19:26:18  66927 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - handleProjectFile: loading and editing .classpath and .project files
 19:26:18  67012 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - DONE][0m
 19:26:18  67013 [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[PROCESS COMPLETED][0m
+19:46:48  198  [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[STARTING PROCESS][0m
+19:46:48  200  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: deleting ./out/org.xtext.schoolfromgithubDsl and its content...
+19:46:48  205  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: ./out/org.xtext.schoolfromgithubDsl deleted
+19:46:48  337  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - START][0m
+19:46:48  338  [main] INFO  java.lang.Class - generating project at ./out/org.xtext.schoolfromgithubDsl
+19:46:48  429  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - DONE][0m
+19:46:48  429  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - deploying .mwe2 fix
+19:46:48  442  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - .mwe2 fixed
+19:46:48  443  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - adding backtracking
+19:46:48  443  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - backtracking added
+19:46:48  444  [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - START][0m
+19:46:48  444  [main] INFO  i.u.e.acceleo.AcceleoLauncher - compiling mtl/generate.mtl...
+19:46:49  1590 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .mtl compiled to mtl/
+19:46:49  1590 [main] INFO  i.u.e.acceleo.AcceleoLauncher - generating schoolfromgithubDsl.xtext to ./out/org.xtext.schoolfromgithubDsl/org.xtext.schoolfromgithubDsl.parent/org.xtext.schoolfromgithubDsl/src/org/xtext/schoolfromgithubDsl/, entry point: School
+19:46:49  1590 [main] INFO  i.u.e.acceleo.AcceleoLauncher - loading ecores/schoolFromGithub.ecore
+19:46:49  1599 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .ecore loaded
+19:46:49  1847 [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - DONE][0m to ./out/org.xtext.schoolfromgithubDsl/org.xtext.schoolfromgithubDsl.parent/org.xtext.schoolfromgithubDsl/src/org/xtext/schoolfromgithubDsl/
+19:46:49  1853 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - START][0m
+19:46:49  1861 [main] INFO  i.u.e.maven.MavenLauncher - running: mvn -f ./out/org.xtext.schoolfromgithubDsl/org.xtext.schoolfromgithubDsl.parent/pom.xml clean install
+19:47:39  51878 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - DONE][0m
+19:47:39  51878 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - START][0m
+19:47:39  51878 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - targets loaded
+19:47:39  51879 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - handleProjectFile: loading and editing .classpath and .project files
+19:47:40  51944 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - DONE][0m
+19:47:40  51945 [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[PROCESS COMPLETED][0m
+19:48:01  197  [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[STARTING PROCESS][0m
+19:48:01  199  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: deleting ./out/org.xtext.schoolecoreDsl and its content...
+19:48:01  204  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: ./out/org.xtext.schoolecoreDsl deleted
+19:48:01  344  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - START][0m
+19:48:01  344  [main] INFO  java.lang.Class - generating project at ./out/org.xtext.schoolecoreDsl
+19:48:01  442  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - DONE][0m
+19:48:01  442  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - deploying .mwe2 fix
+19:48:01  458  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - .mwe2 fixed
+19:48:01  459  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - adding backtracking
+19:48:01  460  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - backtracking added
+19:48:01  460  [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - START][0m
+19:48:01  460  [main] INFO  i.u.e.acceleo.AcceleoLauncher - compiling mtl/generate.mtl...
+19:48:02  1572 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .mtl compiled to mtl/
+19:48:02  1572 [main] INFO  i.u.e.acceleo.AcceleoLauncher - generating schoolecoreDsl.xtext to ./out/org.xtext.schoolecoreDsl/org.xtext.schoolecoreDsl.parent/org.xtext.schoolecoreDsl/src/org/xtext/schoolecoreDsl/, entry point: SchoolModel
+19:48:02  1573 [main] INFO  i.u.e.acceleo.AcceleoLauncher - loading ecores/schoolEcore.ecore
+19:48:02  1577 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .ecore loaded
+19:48:03  1834 [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - DONE][0m to ./out/org.xtext.schoolecoreDsl/org.xtext.schoolecoreDsl.parent/org.xtext.schoolecoreDsl/src/org/xtext/schoolecoreDsl/
+19:48:03  1835 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - START][0m
+19:48:03  1840 [main] INFO  i.u.e.maven.MavenLauncher - running: mvn -f ./out/org.xtext.schoolecoreDsl/org.xtext.schoolecoreDsl.parent/pom.xml clean install
+19:48:46  45648 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - DONE][0m
+19:48:46  45648 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - START][0m
+19:48:46  45648 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - targets loaded
+19:48:46  45649 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - handleProjectFile: loading and editing .classpath and .project files
+19:48:46  45714 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - DONE][0m
+19:48:46  45714 [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[PROCESS COMPLETED][0m
+19:57:48  217  [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[STARTING PROCESS][0m
+19:57:48  220  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: deleting ./out/org.xtext.ecoreecoreDsl and its content...
+19:57:49  337  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: ./out/org.xtext.ecoreecoreDsl deleted
+19:57:49  483  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - START][0m
+19:57:49  483  [main] INFO  java.lang.Class - generating project at ./out/org.xtext.ecoreecoreDsl
+19:57:49  579  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - DONE][0m
+19:57:49  579  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - deploying .mwe2 fix
+19:57:49  590  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - .mwe2 fixed
+19:57:49  590  [main] WARN  i.u.ecoreToWebEditor.utils.Utils - this could lead to: memo array is null DslLexer.g
+19:57:49  590  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - adding backtracking
+19:57:49  591  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - backtracking added
+19:57:49  591  [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - START][0m
+19:57:49  591  [main] INFO  i.u.e.acceleo.AcceleoLauncher - compiling mtl/generate.mtl...
+19:57:50  1712 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .mtl compiled to mtl/
+19:57:50  1713 [main] INFO  i.u.e.acceleo.AcceleoLauncher - generating ecoreecoreDsl.xtext to ./out/org.xtext.ecoreecoreDsl/org.xtext.ecoreecoreDsl.parent/org.xtext.ecoreecoreDsl/src/org/xtext/ecoreecoreDsl/, entry point: EClassifier
+19:57:50  1715 [main] INFO  i.u.e.acceleo.AcceleoLauncher - loading ecores/ecoreEcore.ecore
+19:57:50  1792 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .ecore loaded
+19:57:50  2126 [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - DONE][0m to ./out/org.xtext.ecoreecoreDsl/org.xtext.ecoreecoreDsl.parent/org.xtext.ecoreecoreDsl/src/org/xtext/ecoreecoreDsl/
+19:57:50  2127 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - START][0m
+19:57:50  2133 [main] INFO  i.u.e.maven.MavenLauncher - running: mvn -f ./out/org.xtext.ecoreecoreDsl/org.xtext.ecoreecoreDsl.parent/pom.xml clean install
+19:58:54  65617 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - DONE][0m
+19:58:54  65617 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - START][0m
+19:58:54  65617 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - targets loaded
+19:58:54  65617 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - handleProjectFile: loading and editing .classpath and .project files
+19:58:54  65687 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - DONE][0m
+19:58:54  65687 [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[PROCESS COMPLETED][0m
+20:03:57  203  [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[STARTING PROCESS][0m
+20:03:57  205  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: deleting ./out/org.xtext.ecoreecoreDsl and its content...
+20:03:57  318  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: ./out/org.xtext.ecoreecoreDsl deleted
+20:03:57  459  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - START][0m
+20:03:57  460  [main] INFO  java.lang.Class - generating project at ./out/org.xtext.ecoreecoreDsl
+20:03:57  559  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - DONE][0m
+20:03:57  559  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - deploying .mwe2 fix
+20:03:57  568  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - .mwe2 fixed
+20:03:57  568  [main] WARN  i.u.ecoreToWebEditor.utils.Utils - this could lead to: memo array is null DslLexer.g
+20:03:57  568  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - adding backtracking
+20:03:57  569  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - backtracking added
+20:03:57  569  [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - START][0m
+20:03:57  570  [main] INFO  i.u.e.acceleo.AcceleoLauncher - compiling mtl/generate.mtl...
+20:03:58  1674 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .mtl compiled to mtl/
+20:03:58  1675 [main] INFO  i.u.e.acceleo.AcceleoLauncher - generating ecoreecoreDsl.xtext to ./out/org.xtext.ecoreecoreDsl/org.xtext.ecoreecoreDsl.parent/org.xtext.ecoreecoreDsl/src/org/xtext/ecoreecoreDsl/, entry point: -efy
+20:03:58  1676 [main] INFO  i.u.e.acceleo.AcceleoLauncher - loading ecores/ecoreEcore.ecore
+20:03:58  1756 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .ecore loaded
+20:03:59  2323 [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - DONE][0m to ./out/org.xtext.ecoreecoreDsl/org.xtext.ecoreecoreDsl.parent/org.xtext.ecoreecoreDsl/src/org/xtext/ecoreecoreDsl/
+20:03:59  2324 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - START][0m
+20:03:59  2330 [main] INFO  i.u.e.maven.MavenLauncher - running: mvn -f ./out/org.xtext.ecoreecoreDsl/org.xtext.ecoreecoreDsl.parent/pom.xml clean install
+20:05:21  203  [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[STARTING PROCESS][0m
+20:05:21  205  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: deleting ./out/org.xtext.ecoreEObjectEP and its content...
+20:05:21  210  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: ./out/org.xtext.ecoreEObjectEP deleted
+20:05:21  350  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - START][0m
+20:05:21  350  [main] INFO  java.lang.Class - generating project at ./out/org.xtext.ecoreEObjectEP
+20:05:21  450  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - DONE][0m
+20:05:21  451  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - deploying .mwe2 fix
+20:05:21  471  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - .mwe2 fixed
+20:05:21  471  [main] WARN  i.u.ecoreToWebEditor.utils.Utils - this could lead to: memo array is null DslLexer.g
+20:05:21  471  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - adding backtracking
+20:05:21  472  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - backtracking added
+20:05:21  472  [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - START][0m
+20:05:21  473  [main] INFO  i.u.e.acceleo.AcceleoLauncher - compiling mtl/generate.mtl...
+20:05:22  1624 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .mtl compiled to mtl/
+20:05:22  1625 [main] INFO  i.u.e.acceleo.AcceleoLauncher - generating ecoreEObjectEP.xtext to ./out/org.xtext.ecoreEObjectEP/org.xtext.ecoreEObjectEP.parent/org.xtext.ecoreEObjectEP/src/org/xtext/ecoreEObjectEP/, entry point: EObject
+20:05:22  1626 [main] INFO  i.u.e.acceleo.AcceleoLauncher - loading ecores/ecoreEcore.ecore
+20:05:22  1688 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .ecore loaded
+20:05:23  2083 [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - DONE][0m to ./out/org.xtext.ecoreEObjectEP/org.xtext.ecoreEObjectEP.parent/org.xtext.ecoreEObjectEP/src/org/xtext/ecoreEObjectEP/
+20:05:23  2084 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - START][0m
+20:05:23  2089 [main] INFO  i.u.e.maven.MavenLauncher - running: mvn -f ./out/org.xtext.ecoreEObjectEP/org.xtext.ecoreEObjectEP.parent/pom.xml clean install
+20:05:38  17857 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - DONE][0m
+20:05:38  17858 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - START][0m
+20:05:38  17858 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - targets loaded
+20:05:38  17859 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - handleProjectFile: loading and editing .classpath and .project files
+20:05:38  17927 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - DONE][0m
+20:05:38  17927 [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[PROCESS COMPLETED][0m
+20:07:21  211  [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[STARTING PROCESS][0m
+20:07:21  215  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: deleting ./out/org.xtext.ecoreEClassEP and its content...
+20:07:21  222  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: ./out/org.xtext.ecoreEClassEP deleted
+20:07:21  367  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - START][0m
+20:07:21  367  [main] INFO  java.lang.Class - generating project at ./out/org.xtext.ecoreEClassEP
+20:07:21  479  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - DONE][0m
+20:07:21  479  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - deploying .mwe2 fix
+20:07:21  499  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - .mwe2 fixed
+20:07:21  500  [main] WARN  i.u.ecoreToWebEditor.utils.Utils - this could lead to: memo array is null DslLexer.g
+20:07:21  500  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - adding backtracking
+20:07:21  501  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - backtracking added
+20:07:21  501  [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - START][0m
+20:07:21  501  [main] INFO  i.u.e.acceleo.AcceleoLauncher - compiling mtl/generate.mtl...
+20:07:23  1686 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .mtl compiled to mtl/
+20:07:23  1686 [main] INFO  i.u.e.acceleo.AcceleoLauncher - generating ecoreEClassEP.xtext to ./out/org.xtext.ecoreEClassEP/org.xtext.ecoreEClassEP.parent/org.xtext.ecoreEClassEP/src/org/xtext/ecoreEClassEP/, entry point: EClass
+20:07:23  1686 [main] INFO  i.u.e.acceleo.AcceleoLauncher - loading ecores/ecoreEcore.ecore
+20:07:23  1740 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .ecore loaded
+20:07:23  2131 [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - DONE][0m to ./out/org.xtext.ecoreEClassEP/org.xtext.ecoreEClassEP.parent/org.xtext.ecoreEClassEP/src/org/xtext/ecoreEClassEP/
+20:07:23  2132 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - START][0m
+20:07:23  2138 [main] INFO  i.u.e.maven.MavenLauncher - running: mvn -f ./out/org.xtext.ecoreEClassEP/org.xtext.ecoreEClassEP.parent/pom.xml clean install
+20:08:23  61788 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - DONE][0m
+20:08:23  61789 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - START][0m
+20:08:23  61789 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - targets loaded
+20:08:23  61790 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - handleProjectFile: loading and editing .classpath and .project files
+20:08:23  61882 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - DONE][0m
+20:08:23  61884 [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[PROCESS COMPLETED][0m
+20:09:22  201  [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[STARTING PROCESS][0m
+20:09:22  203  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: deleting ./out/org.xtext.ecoreEPackageEP and its content...
+20:09:22  208  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: ./out/org.xtext.ecoreEPackageEP deleted
+20:09:22  352  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - START][0m
+20:09:22  352  [main] INFO  java.lang.Class - generating project at ./out/org.xtext.ecoreEPackageEP
+20:09:22  455  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - DONE][0m
+20:09:22  455  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - deploying .mwe2 fix
+20:09:22  471  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - .mwe2 fixed
+20:09:22  471  [main] WARN  i.u.ecoreToWebEditor.utils.Utils - this could lead to: memo array is null DslLexer.g
+20:09:22  471  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - adding backtracking
+20:09:22  472  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - backtracking added
+20:09:22  473  [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - START][0m
+20:09:22  473  [main] INFO  i.u.e.acceleo.AcceleoLauncher - compiling mtl/generate.mtl...
+20:09:23  1583 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .mtl compiled to mtl/
+20:09:23  1584 [main] INFO  i.u.e.acceleo.AcceleoLauncher - generating ecoreEPackageEP.xtext to ./out/org.xtext.ecoreEPackageEP/org.xtext.ecoreEPackageEP.parent/org.xtext.ecoreEPackageEP/src/org/xtext/ecoreEPackageEP/, entry point: EPackage
+20:09:23  1584 [main] INFO  i.u.e.acceleo.AcceleoLauncher - loading ecores/ecoreEcore.ecore
+20:09:23  1616 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .ecore loaded
+20:09:24  2006 [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - DONE][0m to ./out/org.xtext.ecoreEPackageEP/org.xtext.ecoreEPackageEP.parent/org.xtext.ecoreEPackageEP/src/org/xtext/ecoreEPackageEP/
+20:09:24  2007 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - START][0m
+20:09:24  2015 [main] INFO  i.u.e.maven.MavenLauncher - running: mvn -f ./out/org.xtext.ecoreEPackageEP/org.xtext.ecoreEPackageEP.parent/pom.xml clean install
+20:10:22  60670 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - DONE][0m
+20:10:22  60671 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - START][0m
+20:10:22  60672 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - targets loaded
+20:10:22  60672 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - handleProjectFile: loading and editing .classpath and .project files
+20:10:22  60737 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - DONE][0m
+20:10:22  60737 [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[PROCESS COMPLETED][0m
+21:32:40  295  [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[STARTING PROCESS][0m
+21:32:40  297  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: deleting ./out/org.xtext.ecoreEPackageEP and its content...
+21:32:40  418  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - clean: ./out/org.xtext.ecoreEPackageEP deleted
+21:32:40  613  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - START][0m
+21:32:40  613  [main] INFO  java.lang.Class - generating project at ./out/org.xtext.ecoreEPackageEP
+21:32:40  750  [main] INFO  java.lang.Class - [32m[XTEXTPROJECTBUILDER - DONE][0m
+21:32:40  750  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - deploying .mwe2 fix
+21:32:40  761  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - .mwe2 fixed
+21:32:40  762  [main] WARN  i.u.ecoreToWebEditor.utils.Utils - this could lead to: memo array is null DslLexer.g
+21:32:40  762  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - adding backtracking
+21:32:40  763  [main] INFO  i.u.ecoreToWebEditor.utils.Utils - backtracking added
+21:32:40  763  [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - START][0m
+21:32:40  763  [main] INFO  i.u.e.acceleo.AcceleoLauncher - compiling mtl/generate.mtl...
+21:32:42  2207 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .mtl compiled to mtl/
+21:32:42  2207 [main] INFO  i.u.e.acceleo.AcceleoLauncher - generating ecoreEPackageEP.xtext to ./out/org.xtext.ecoreEPackageEP/org.xtext.ecoreEPackageEP.parent/org.xtext.ecoreEPackageEP/src/org/xtext/ecoreEPackageEP/, entry point: EPackage
+21:32:42  2207 [main] INFO  i.u.e.acceleo.AcceleoLauncher - loading ecores/ecoreEcore.ecore
+21:32:42  2277 [main] INFO  i.u.e.acceleo.AcceleoLauncher - .ecore loaded
+21:32:42  2736 [main] INFO  i.u.e.acceleo.AcceleoLauncher - [32m[ACCELEO LAUNCHER - DONE][0m to ./out/org.xtext.ecoreEPackageEP/org.xtext.ecoreEPackageEP.parent/org.xtext.ecoreEPackageEP/src/org/xtext/ecoreEPackageEP/
+21:32:42  2737 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - START][0m
+21:32:42  2744 [main] INFO  i.u.e.maven.MavenLauncher - running: mvn -f ./out/org.xtext.ecoreEPackageEP/org.xtext.ecoreEPackageEP.parent/pom.xml clean install
+21:33:59  79029 [main] INFO  i.u.e.maven.MavenLauncher - [32m[MAVEN LAUNCHER - DONE][0m
+21:33:59  79029 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - START][0m
+21:33:59  79030 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - targets loaded
+21:33:59  79030 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - handleProjectFile: loading and editing .classpath and .project files
+21:33:59  79118 [main] INFO  i.u.ecoreToWebEditor.utils.Utils - [32m[ECLIPSIFY - DONE][0m
+21:33:59  79118 [main] INFO  i.univaq.ecoreToWebEditor.core.Main - [32m[PROCESS COMPLETED][0m

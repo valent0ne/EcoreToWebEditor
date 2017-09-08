@@ -121,7 +121,7 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 [for (a : EAttribute | c.eAllAttributes)]
 	[comment cannot handle EEnumerator typed attributes as it leads to "The attribute '<attributeName>' is not transient so it must have a data type that is serializable"/]
 	[if (a.eType.name <> 'EEnumerator')]
-		[if (a.lowerBound = 0)] ( [/if] '[a.name/]' '=' [if (a.upperBound > 1)] '{' [a.name/]+=[a.eType.name/] ( "," [a.name/]+=[a.eType.name/])* '}' [else] [a.name/] = [a.eType.name/] [/if] [if (a.lowerBound = 0)] )? [/if]
+		('[a.name/]' '=' [if (a.upperBound > 1 or a.upperBound = -1)] '{' [a.name/]+=[a.eType.name/] ( "," [a.name/]+=[a.eType.name/])* '}' [else] [a.name/] = [a.eType.name/] [/if])?
 	[/if]
 [/for]
 [/template]
@@ -133,9 +133,9 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 	[comment if it is not a composition/]
 	[if (r.containment = false)]
 		[if (r.upperBound = 1)]
-			('[r.name/]' '(' [r.name/] = ['['/][r.eReferenceType.name/]|STRING[']'/] ')')[if (r.lowerBound = 0)]?[/if]
+			('[r.name/]' '(' [r.name/] = ['['/][r.eReferenceType.name/]|STRING[']'/] ')')?
 		[else] 
-			('[r.name/]' '(' [r.name/] += ['['/][r.eReferenceType.name/]|STRING[']'/] ( "," [r.name/] += ['['/][r.eReferenceType.name/]|STRING[']'/])* ')' )[if (r.lowerBound = 0)]?[/if]
+			('[r.name/]' '(' [r.name/] += ['['/][r.eReferenceType.name/]|STRING[']'/] ( "," [r.name/] += ['['/][r.eReferenceType.name/]|STRING[']'/])* ')' )?
 		[/if]
 	[/if]
 [/for]

@@ -127,6 +127,7 @@ public class Utils {
      */
 
     public static void addBacktracking(){
+        LOGGER.warn("this could lead to: memo array is null DslLexer.g");
         LOGGER.info("adding backtracking");
         //path to target .mwe2 file
         String path = PATH_TO_XTEXT_FOLDER+File.separator+"Generate"+XTEXT_FILE_NAME+MWE2_FILE_FORMAT;

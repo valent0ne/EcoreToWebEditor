@@ -42,7 +42,6 @@ public class Constants {
     public static final String BACKTRACK_CONTENT = "\t\t\tparserGenerator = {\n" +
             "\t\t\t\toptions = {\n" +
             "\t\t\t\t\tbacktrack = true\n" +
-            "\t\t\t\t\tbacktrackLexer = true\n" +
             "\t\t\t\t}\n" +
             "\t\t\t}";
 
