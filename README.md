@@ -8,8 +8,9 @@ more infos in the /doc directory
 
 demo video: https://youtu.be/Gybev8UhI20
 
-usage: java -jar ecoreToWebEditor-1.0.jar -e [path_to_ecore_metamodel] -ep [name_of_entry_point_eclassifier] -efy
-generated project will be placed inside the ./out folder
-after the execution is completed, import the generated project into eclipse and then run the ServerLauncher class inside the com.xtext.[ecore_name]Dsl.web package, the application is deployed to localhost:8080; the generated grammar file ([ecore_name]Dsl.xtext) is placed inside the com.xtext.[ecore_name]Dsl package.
+usage: `java -jar ecoreToWebEditor-1.0.jar -e [path_to_ecore_metamodel] -ep [name_of_entry_point_eclassifier] -efy`
 
-(the -efy flag is optional, it is used to refactor the project so it can be easily imported into eclipse)
+generated project will be placed inside the `./out` folder
+after the execution is completed, import the generated project into eclipse and then run the `ServerLauncher.java` class inside the `com.xtext.[ecore_name]Dsl.web` package, the application is deployed to localhost:8080; the generated grammar file (`[ecore_name]Dsl.xtext`) is placed inside the `com.xtext.[ecore_name]Dsl` package.
+
+(the `-efy` flag is optional, it is used to refactor the project so it can be easily imported into eclipse)
