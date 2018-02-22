@@ -9,6 +9,7 @@ more infos in the /doc directory
 demo video: https://youtu.be/m8UzrMBbMNg
 
 usage: 
+
 `java -jar ecoreToWebEditor-1.0.jar -e [path_to_ecore_metamodel] -ep [name_of_entry_point_eclassifier] -efy`
 
 generated project will be placed inside the `./out` folder
