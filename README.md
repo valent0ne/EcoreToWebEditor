@@ -4,7 +4,7 @@ Design and development of an automated process that generates web-based text mod
 - a canonical mapping for the definition of the textual (concrete) syntax;
 - the generation of its modeling environment.
 The whole process is carried out by a Java command line application that uses the interaction of transformation engines of models and frameworks such as Acceleo and Xtext.
-more infos in the /doc directory
+more infos in the `/doc` directory
 
 demo video: https://youtu.be/m8UzrMBbMNg
 
